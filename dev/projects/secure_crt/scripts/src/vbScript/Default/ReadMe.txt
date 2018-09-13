@@ -1,0 +1,1 @@
+The Scripts SecureCRT Default directory contains WSH scripts that are specifically written to run in SecureCRT.  These script are copied off of the vendors website and are offered as is.

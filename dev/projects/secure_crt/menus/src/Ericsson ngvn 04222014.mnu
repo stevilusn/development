@@ -1,0 +1,441 @@
+//*** This file will be overwritten when SecureCRT is upgraded.           ***
+//*** If you wish to modify the file, please make your changes in a copy. ***
+
+
+// accelerator table
+ACCELERATOR
+	"Connect", "C", "VIRTKEY | ALT"
+	"Connect in Tab", "B", "VIRTKEY | ALT"
+	"New SFTP Tab", "P", "VIRTKEY | ALT"
+	"Quick", "Q", "VIRTKEY | ALT"
+	"Go to Chat Window", "G", "VIRTKEY | ALT"
+END
+
+// stringtable for status bar and tooltips
+STRINGTABLE
+	"Connect",  "Connect to a remote host in a new window\nConnect"
+	"Connect in Tab",  "Connect to a remote host in a new tab\nNew Tab"
+	"Clone Session", "Clone current session\nClone Session"
+	"New SFTP Tab",  "Connect new SFTP tab using current session\nSFTP"
+	"Lock Session", "Lock/Unlock current session\nLock/Unlock Session"
+	"Quick",  "Quick connect\nQuick Connect"
+	"Go to Chat Window",  "Go to the chat window or session window\nGo to Chat Window"
+END
+
+// main menu
+MENU  "[main]"
+	POPUPMENU "&File"
+		MENUITEM "&Connect...", "MENU_CONNECT",   ,"Connect" , "Connect"
+		MENUITEM "&Quick Connect...", "MENU_QUICK_CONNECT",   ,"Quick", "Quick"
+		MENUITEM "Connect in Ta&b...", "MENU_TAB_NEW",   ,"Connect in Tab" , "Connect in Tab"
+		SEPARATOR
+		MENUITEM "&Reconnect", "MENU_RECONNECT"
+		MENUITEM "Reconnect &All", "MENU_RECONNECT_ALL"
+		MENUITEM "&Disconnect", "MENU_DISCONNECT"
+		MENUITEM "Disc&onnect All", "MENU_DISCONNECT_ALL"
+		SEPARATOR
+		MENUITEM "Clo&ne Session", "MENU_TAB_CLONE",   ,"Clone Session" ,
+		MENUITEM "Connect &SFTP Tab", "MENU_TAB_NEW_SFTP",   ,"New SFTP Tab" , "New SFTP Tab"
+		SEPARATOR
+		MENUITEM "Loc&k Session...", "MENU_TAB_LOCK",   ,"Lock Session" ,
+		SEPARATOR
+		POPUPMENU "&Print"
+			MENUITEM "&Auto Print", "MENU_PRINT_AUTO"
+			MENUITEM "&Screen", "MENU_PRINT_SCREEN"
+			MENUITEM "Se&lection", "MENU_PRINT_SELECTION"
+			MENUITEM "&Eject page", "MENU_PRINT_EJECT_PAGE"
+			MENUITEM "&Cancel", "MENU_PRINT_CANCEL"
+		END
+		MENUITEM "Print Set&up...", "MENU_PRINT_SETUP"
+		SEPARATOR
+		MENUITEM "&Log Session", "MENU_LOG_SESSION"
+		MENUITEM "Ra&w Log Session", "MENU_DEBUG_LOG"
+		MENUITEM "&Trace Options", "MENU_TRACE_OPTIONS"
+		SEPARATOR
+		MENUITEM "Recent Session", "MENU_MRU_FILE1"
+		SEPARATOR
+		MENUITEM "E&xit", "MENU_EXIT"
+	END
+	
+	POPUPMENU "&Edit"
+		MENUITEM "&Copy", "MENU_COPY"
+		MENUITEM "&Paste", "MENU_PASTE"
+		MENUITEM "C&opy && Paste", "MENU_COPY_PASTE"
+		MENUITEM "Paste as &Quotation", "MENU_EDIT_PASTE_AS_QUOTATION"
+		MENUITEM "Select &All", "MENU_SELECT_ALL"
+		MENUITEM "&Find...", "MENU_FIND"
+		SEPARATOR
+		MENUITEM "Print Se&lection", "MENU_PRINT_SELECTION"
+		SEPARATOR
+		MENUITEM "&Go to Chat Window", "MENU_GOTO_CHAT_SESSION_WINDOW"
+		SEPARATOR
+		MENUITEM "Clear Scroll&back", "MENU_CLEAR_SCROLLBACK"
+		MENUITEM "Clear &Screen", "MENU_CLEAR_SCREEN"
+		MENUITEM "Clear Screen && Scrollbac&k", "MENU_CLEAR_SCREEN_AND_SCROLLBACK"
+		SEPARATOR
+		MENUITEM "&Reset", "MENU_RESET"
+	END
+	
+	POPUPMENU "&View"
+		MENUITEM "&Menu Bar", "MENU_TOGGLE_MENU_BAR"
+		MENUITEM "&Toolbar", "MENU_TOGGLE_TOOLBAR"
+		MENUITEM "Session Ta&bs", "MENU_TOGGLE_SESSION_TABS"
+		MENUITEM "&Chat Window", "MENU_TOGGLE_CHAT_WINDOW"
+		MENUITEM "Connect Ba&r", "MENU_TOGGLE_CONNECT_BAR"
+		MENUITEM "&Status Bar", "MENU_TOGGLE_STATUS_BAR"
+		MENUITEM "&Button Bar", "MENU_TOGGLE_BUTTON_BAR"
+		POPUPMENU "Th&emes"
+			MENUITEM "&Shaded", "MENU_THEMES_SHADED"
+			MENUITEM "Office 200&0", "MENU_THEMES_OFFICE2000"
+			MENUITEM "Office 200&3", "MENU_THEMES_OFFICE2003"
+			MENUITEM "&Blue", "MENU_THEMES_BLUE"
+			MENUITEM "Blac&k", "MENU_THEMES_BLACK"
+			MENUITEM "&Aqua", "MENU_THEMES_AQUA"
+			MENUITEM "S&ilver", "MENU_THEMES_SILVER"
+		END
+		SEPARATOR
+		MENUITEM "&Window Transparency", "MENU_TOGGLE_ALPHA_TRANSPARENCY"
+		SEPARATOR
+		MENUITEM "&Horizontal Scroll Bar", "MENU_TOGGLE_HORZ_SCROLLBAR"
+		MENUITEM "&Vertical Scroll Bar", "MENU_TOGGLE_VERT_SCROLLBAR"
+		SEPARATOR
+		MENUITEM "&Always on Top", "MENU_ALWAYS_ON_TOP"
+		MENUITEM "&Full Screen", "MENU_TOGGLE_FULL_SCREEN"
+	END
+	
+	POPUPMENU "&Options"
+		MENUITEM "&Session Options...", "MENU_SESSION_OPTIONS"
+		MENUITEM "&Global Options...", "MENU_GLOBAL_OPTIONS"
+		SEPARATOR
+		MENUITEM "&Auto Save Options", "MENU_AUTO_SAVE"
+		MENUITEM "Save Settings &Now", "MENU_SAVE_NOW"
+	END
+	
+	POPUPMENU "&Transfer"
+		MENUITEM "&Send ASCII...", "MENU_SEND_ASCII"
+		MENUITEM "&Receive ASCII...", "MENU_RECEIVE_ASCII"
+		SEPARATOR
+		MENUITEM "Send &Binary...", "MENU_SEND_BINARY"
+		SEPARATOR
+		MENUITEM "Se&nd Xmodem...", "MENU_SEND_XMODEM"
+		MENUITEM "Re&ceive Xmodem...", "MENU_RECEIVE_XMODEM"
+		SEPARATOR
+		MENUITEM "Sen&d Ymodem...", "MENU_SEND_YMODEM"
+		MENUITEM "Recei&ve Ymodem...", "MENU_RECEIVE_YMODEM"
+		SEPARATOR
+		MENUITEM "&Zmodem Upload List...", "MENU_ZMODEM_ADD_FILE"
+		MENUITEM "Start Zmodem &Upload", "MENU_SEND_ZMODEM"
+	END
+	
+	POPUPMENU "&Script"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Start Recording Script", "MENU_SCRIPT_START_RECORDING"
+		MENUITEM "S&top Recording Script...", "MENU_SCRIPT_STOP_RECORDING"
+		MENUITEM "C&ancel Recording Script", "MENU_SCRIPT_CANCEL_RECORDING"
+		SEPARATOR
+		MENUITEM "Recent Script", "MENU_SCRIPT_MRU_FILE1"
+	
+		END
+
+	POPUPMENU "NGVN &GVSA"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Abort", "SEND", "abort\r"
+		MENUITEM "&Leave All", "SEND", "leave all\r"
+		MENUITEM "Log&out", "SEND", "logout\r"
+		MENUITEM "&Quit All", "SEND", "quit all\r"
+		POPUPMENU "&Tools"
+			MENUITEM "&Clear Status &Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_ClearStatusText.vbs"
+			MENUITEM "&Clone Tab", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_CloneTab.vbs"
+			MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+			MENUITEM "&Google Selected Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_GoogleSelectedText.vbs"
+			MENUITEM "Tab &Info", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_Info.vbs"
+			MENUITEM "Send To &All Tabs", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SendToAllTabs.vbs"
+		END
+		SEPARATOR
+		MENUITEM "Cain New", "RUN", "C:\Scripts\SecureCRT\NGVN\Cain New.vbs"
+		MENUITEM "CNAMDVER", "RUN", "C:\Scripts\SecureCRT\NGVN\CNAMDVER.vbs"
+		MENUITEM "E800VER", "RUN", "C:\Scripts\SecureCRT\NGVN\E800VER.vbs"
+		MENUITEM "HCPYTRK", "RUN", "C:\SCRIPTS\SecureCRT\NGVN\HCPYTRK.vbs"
+		MENUITEM "HCPYTRK (Wireless)", "RUN", "C:\SCRIPTS\SecureCRT\NGVN\HCPYTRK.vbs"
+		MENUITEM "LCA6SCRN", "RUN", "C:\Scripts\SecureCRT\NGVN\LCA6SCRN.vbs"
+		MENUITEM "MWQ RESET", "RUN", "C:\Scripts\SecureCRT\NGVN\MWQ RESET.vbs"
+		MENUITEM "MWQ STATUS", "RUN", "C:\Scripts\SecureCRT\NGVN\MWQ STATUS.vbs"
+		MENUITEM "NEW", "RUN", "C:\Scripts\SecureCRT\NGVN\NEW.vbs"
+		MENUITEM "OLD", "RUN", "C:\Scripts\SecureCRT\NGVN\OLD.vbs"
+		MENUITEM "POST DN", "RUN", "C:\Scripts\SecureCRT\NGVN\POST DN.vbs"
+		MENUITEM "Post SIP TRKGRP", "RUN", "C:\Scripts\SecureCRT\NGVN\Post SIP TRKGRP.vbs"
+		MENUITEM "QCM", "RUN", "C:\Scripts\SecureCRT\NGVN\QCM.vbs"
+		MENUITEM "QDN and QLRN", "RUN", "C:\Scripts\SecureCRT\NGVN\QDN & QLRN.vbs"
+		MENUITEM "QDN Analyzer", "RUN", "C:\Scripts\SecureCRT\NGVN\QDN Analyzer.vbs"
+		MENUITEM "Servord", "RUN", "C:\Scripts\SecureCRT\NGVN\Servord.vbs"
+		MENUITEM "SERVORD - CFDA Ring Change", "RUN", "C:\Scripts\SecureCRT\NGVN\SERVORD - CFDA Ring Change.vbs"
+		MENUITEM "SSPTKINF", "RUN", "C:\Scripts\SecureCRT\NGVN\SSPTKINF.vbs"
+		MENUITEM "Table c7rteset", "RUN", "C:\Scripts\SecureCRT\NGVN\Table c7rteset.vbs"
+		MENUITEM "Table isupdest", "RUN", "C:\Scripts\SecureCRT\NGVN\Table isupdest.vbs"
+		MENUITEM "Travers", "RUN", "C:\Scripts\SecureCRT\NGVN\Travers.vbs"
+		MENUITEM "Trunk OM", "RUN", "C:\Scripts\SecureCRT\NGVN\Trunk OM.vbs"
+		MENUITEM "TTP", "RUN", "C:\Scripts\SecureCRT\NGVN\TTP.vbs"
+	END
+	
+	POPUPMENU "&ALU"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Logout", "SEND", "logout\r"
+		MENUITEM "&Quit", "SEND", "quit\r"
+		POPUPMENU "&Tools"
+			MENUITEM "&Clear Status &Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_ClearStatusText.vbs"
+			MENUITEM "&Clone Tab", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_CloneTab.vbs"
+			MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+			MENUITEM "&Google Selected Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_GoogleSelectedText.vbs"
+			MENUITEM "Tab &Info", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_Info.vbs"
+			MENUITEM "Send To &All Tabs", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SendToAllTabs.vbs"
+		END
+		SEPARATOR
+        MENUITEM "*Show Port [port]", "RUN", "C:\scripts\securecrt\alu\ALU ShowPort0806.vbs"
+        MENUITEM "Show Port Associations [port]", "RUN", "C:\scripts\securecrt\alu\ALU ShowPortAssociations.vbs"
+        MENUITEM "Show Port Detail", "RUN", "C:\scripts\securecrt\alu\ALU ShowPortDetail.vbs"
+        MENUITEM "Show Port Statistics [port]", "RUN", "C:\scripts\securecrt\alu\ALU ShowPortStatistics.vbs"
+        MENUITEM "Show Router ARP", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterArp.vbs"
+        MENUITEM "Show Router ARP [To-CSRHostname-CSID-1]", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterArpTo-CSRHostname-CSID-1.vbs"
+        MENUITEM "Show Router BFD Session Match [To-CSRHostname-CSID-1] context all", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterBfdSessionMatchTo-CSRHostname-CSID-1 context all.vbs"
+        MENUITEM "Show Router Interface", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterInt.vbs"
+        MENUITEM "Show Router Interface Detail", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterIntDetail.vbs"
+        MENUITEM "Show Router interface [To-CSRHOSTNAME-CSID-1]", "RUN", "C:\scripts\securecrt\alu\ALU show router interface [to-CSRHOSTNAME-CSID-1.vbs"    
+        MENUITEM "Show Router Int [To-CSRHostname-CSID-1] detail", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterIntToCSRHostnameCSID-1 detail.vbs"
+        MENUITEM "Show Router Int [To-CSRHostname-CSID-1] Statistics", "RUN", "C:\scripts\securecrt\alu\ALU ShowRouterIntTo-CSRHostname-CSID-1 Statistics.vbs"
+        MENUITEM "Show Router Int [CSR IP ADDRESS] Statistics", "RUN", "C:\scripts\securecrt\alu\ALU show router interface CSR-IP-ADDRESS statistics.vbs"
+        MENUITEM "Show Router Int [To-CSRHostname-CSID-1]", "RUN", "C:\scripts\securecrt\alu\ALU show router interface [to-CSRHOSTNAME-CSID-1.vbs"
+        MENUITEM "show router 2 interface | match [cascade]", "RUN", "C:\scripts\securecrt\alu\ALU show router 2 interface match cascade.vbs"
+        MENUITEM "Show Service sdp-using [S-Vlan]", "RUN", "C:\scripts\securecrt\alu\ALU Show service sdp-using [S-vlan].vbs"
+        MENUITEM "Show System Info", "RUN", "C:\scripts\securecrt\alu\ALU ShowSystemInfo.vbs"
+        MENUITEM "*Clear port stats", "RUN", "C:\scripts\securecrt\alu\ALU Clear port stats.vbs"
+        MENUITEM "*Show time", "RUN", "C:\scripts\securecrt\alu\ALU Show time.vbs"
+        MENUITEM "*Show log logid 99 | match | [port] context  all", "RUN", "C:\scripts\securecrt\alu\ALU Show  log loig 99 match port context  all .vbs"
+        MENUITEM "*Admin disp conf | match NGW context all", "RUN", "C:\scripts\securecrt\alu\admin display conf match NGW context all.vbs"
+        MENUITEM "Monitor Port", "RUN", "C:\scripts\securecrt\alu\ALU MonitorPort.vbs"
+        MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+        MENUITEM "SSH to CSR", "RUN", "C:\scripts\securecrt\ericsson\SSH to CSR.vbs"
+		SEPARATOR
+		MENUITEM "ALU CSR Show Port [port]", "RUN", "C:\scripts\securecrt\alu\ALU CSR  ShowPort0806.vbs"
+		MENUITEM "ALU CSR Show Port Detail", "RUN", "C:\scripts\securecrt\alu\ALU CSR ShowPortDetail.vbs"
+		MENUITEM "ALU CSR Show port 1/2/8 statistics", "RUN", "C:\scripts\securecrt\alu\ALU CSR show port 128 statistics.vbs"
+		MENUITEM "ALU CSR Show router bfd session", "RUN", "C:\scripts\securecrt\alu\ALU CSR show router bfd session.vbs"
+		MENUITEM "ALU CSR Show service sdp-using", "RUN", "C:\scripts\securecrt\alu\ALU CSR show service sdp-using.vbs"
+		MENUITEM "ALU CSR Show Router Arp", "RUN", "C:\scripts\securecrt\alu\ALU CSR ShowRouterArp.vbs"
+		MENUITEM "ALU CSR Show Router Int", "RUN", "C:\scripts\securecrt\alu\ALU CSR ShowRouterInt.vbs"
+		MENUITEM "ALU CSR Show Router Int Detail", "RUN", "C:\scripts\securecrt\alu\ALU CSR ShowRouterIntDetail.vbs"
+		MENUITEM "ALU CSR Show System Info", "RUN", "C:\scripts\securecrt\alu\ALU CSR ShowSystemInfo.vbs"
+		MENUITEM "ALU CSR Config port 1/2/7 info", "RUN", "C:\scripts\securecrt\alu\ALU CSR config port 127 info.vbs"
+		MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+		MENUITEM "&Quit", "SEND", "quit\r"
+	END
+
+	POPUPMENU "&Ericsson"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Exit", "SEND", "exit\r"
+		MENUITEM "&Quit", "SEND", "quit\r"
+		POPUPMENU "&Tools"
+			MENUITEM "&Clear Status &Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_ClearStatusText.vbs"
+			MENUITEM "&Clone Tab", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_CloneTab.vbs"
+			MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+			MENUITEM "&Google Selected Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_GoogleSelectedText.vbs"
+			MENUITEM "Tab &Info", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_Info.vbs"
+			MENUITEM "Send To &All Tabs", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SendToAllTabs.vbs"
+		END
+		SEPARATOR
+        MENUITEM "Show Config [cascade]", "RUN", "C:\scripts\securecrt\ericsson\showconfig0715.vbs"
+        MENUITEM "Show Bind [cascade]", "RUN", "C:\scripts\securecrt\ericsson\showbind0715.vbs"
+        MENUITEM "Show Circuit Counters [port] | inc [s-vlan]", "RUN", "C:\scripts\securecrt\ericsson\showcircuitcounter.vbs"
+        MENUITEM "Show XC | inc [EOAM Vlan]", "RUN", "C:\scripts\securecrt\ericsson\showXC0715.vbs"
+        MENUITEM "Show Circuit Counters [EOAM VLan]", "RUN", "C:\scripts\securecrt\ericsson\showcircuitcounterEOAMVLan0715.vbs"
+        MENUITEM "Show IP Int Brief | inc [cascade]", "RUN", "C:\scripts\securecrt\ericsson\showIpIntBrief0715.vbs"
+        MENUITEM "Show ARP | inc [BH Mgmt VLan]", "RUN", "C:\scripts\securecrt\ericsson\showArp0715.vbs"
+        MENUITEM "Show BFD Sessions | inc [CSR IP]", "RUN", "C:\scripts\securecrt\ericsson\showbfdsession0716.vbs"
+        MENUITEM "*Show Port [port] detail", "RUN", "C:\scripts\securecrt\ericsson\showport0715.vbs"
+        MENUITEM "Show Port [port] transciever", "RUN", "C:\scripts\securecrt\ericsson\showPortTrans0715.vbs"
+        MENUITEM "Show Port Counters [port]", "RUN", "C:\scripts\securecrt\ericsson\showPortCounters0716.vbs"
+    	MENUITEM "Show Circuit [port]", "RUN", "C:\scripts\securecrt\ericsson\showCircuitPort0716.vbs"
+    	MENUITEM "*Show port detail grep NGWAN", "RUN", "C:\scripts\securecrt\ericsson\show port detail grep NGWAN.vbs"
+    	MENUITEM "*Show log grep [port]", "RUN", "C:\scripts\securecrt\ericsson\show log grep port.vbs"
+    	MENUITEM "*Clear port [port] stats", "RUN", "C:\scripts\securecrt\ericsson\ALU Clear port stats.vbs"
+    	MENUITEM "*Show time", "RUN", "C:\scripts\securecrt\ericsson\ALU Show time.vbs"
+		MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+		MENUITEM "Telnet", "RUN", "C:\scripts\securecrt\ericsson\telnet.vbs"
+		SEPARATOR
+		MENUITEM "CSR-show config Slot1 lan 1 [port] int-mod ddi", "RUN", "C:\scripts\securecrt\ericsson\showConfigSlot1Lan1PortInterfacemoduleddi0724.vbs"
+		MENUITEM "CSR-show config Slot1 lan 1 [port] ifstatistics", "RUN", "C:\scripts\securecrt\ericsson\showConfigSlot1Lan1PortIfstatistics0724.vbs"
+		MENUITEM "CSR- show config cfm domain md5 ma ma5 mep", "SEND", "show config cfm domain md5 ma ma5 mep\r"
+		MENUITEM "CSR- show config ip bfd bfd-neighbor", "SEND", "show config ip bfd bfd-neighbor\r"
+		MENUITEM "CSR- show config device software", "SEND", "show config device software\r"
+		MENUITEM "Telnet", "RUN", "C:\scripts\securecrt\ericsson\telnet.vbs"
+		MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+		MENUITEM "&Quit", "SEND", "quit\r"
+	END
+	
+	POPUPMENU "&Samsung"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Exit", "SEND", "exit\r"
+		MENUITEM "&Logout", "SEND", "logout\r"
+		MENUITEM "&Quit", "SEND", "quit\r"
+		POPUPMENU "&Tools"
+			MENUITEM "&Clear Status &Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_ClearStatusText.vbs"
+			MENUITEM "&Clone Tab", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_CloneTab.vbs"
+			MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+			MENUITEM "&Google Selected Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_GoogleSelectedText.vbs"
+			MENUITEM "Tab &Info", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_Info.vbs"
+			MENUITEM "Send To &All Tabs", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SendToAllTabs.vbs"
+		END
+		SEPARATOR
+		MENUITEM "Show ARP", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowArp.vbs"
+		MENUITEM "Show ARP | Inc [EOAM Vlan]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowArpIncEOAMVlan.vbs"
+		MENUITEM "Show ARP TenGige [Port.OAM or BH Vlan]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowArpTenGigePortBHOAMPVlan.vbs"
+		MENUITEM "Show Controller TenGige", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowControllerTengige.vbs"
+		MENUITEM "Show Controller TenGige [Port] Internal ", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowControllerTenGigePortInternal.vbs"
+		MENUITEM "*Show Controller TenGige [Port] Physical ", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowControllerTenGigePortPhysical.vbs"
+		MENUITEM "Show Controller Tengige [Port] Stat", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowControllerTengigePortStat.vbs"
+		MENUITEM "Show Int Description | Include [Port]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowIntDescriptionIncludePort.vbs"
+		MENUITEM "Show Int Detail | Include [Port]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowIntDetailIncludePort.vbs"
+		MENUITEM "*Show Int TenGige.[Port.OAM or BH Mgmt VLan]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowIntTenGigePortBHOAMVlan.vbs"
+		MENUITEM "Show Int TenGige.[Port.OAM or BH Mgmt VLan] acc", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowIntTenGigePortBHOAMVlanAcc.vbs"
+		MENUITEM "Show BFD Session | Include [Port]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowBFdSessionIncludeTEPort.vbs"
+		MENUITEM "Show Int TenGigE", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowIntTengige.vbs"
+		MENUITEM "Show Log I Include [Port]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowLogIncPort.vbs"
+		MENUITEM "Show Run | Include [CSRHostname-CSID-1]", "RUN", "C:\scripts\securecrt\Samsung\SAM ShowRunIncludeCSRHostnameCSID-1 detail.vbs"
+		MENUITEM "*Show log incl port", "RUN", "C:\scripts\securecrt\Samsung\show log incl port.vbs"
+		MENUITEM "*Show int des incl NGW", "RUN", "C:\scripts\securecrt\Samsung\SAM Show int des incl NGW.vbs"
+		MENUITEM "*Show clock.vbs", "RUN", "C:\scripts\securecrt\Samsung\show clock.vbs"
+		MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+		MENUITEM "SSH to CSR (Master Session-Jumpbox)", "RUN", "C:\scripts\securecrt\Samsung\SSH to CSR Master Session to Jumpbox.vbs"
+		SEPARATOR
+		MENUITEM "CSR-Show Arp", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowArp.vbs"
+		MENUITEM "CSR-Show Arp Vlan [OAMVlan]", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowArpVlanOAMVlan.vbs"
+		MENUITEM "CSR-Show Arp Vlan [OAMVlan] Detail", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowArpVlanOAMVlanDetail.vbs"
+		MENUITEM "CSR-Show Int Description", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowIntDescr.vbs"
+		MENUITEM "CSR-Show Int Vlan [Vlan]", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowIntVlanOAMVlan.vbs"
+		MENUITEM "CSR-Show Int GigPort", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowIntGigPort.vbs"
+		MENUITEM "CSR-Show Ip Inter Brief", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowIpInterBrief.vbs"
+		MENUITEM "CSR-Show BFD Neighbors", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowBfdNeighborsf.vbs"
+		MENUITEM "CSR-Show Mac-address-table", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR ShowMac-address-table.vbs"
+		MENUITEM "CSR-Show mac-address-table vlan [vlan]", "RUN", "C:\scripts\securecrt\Samsung\SAM CSR show mac-address-table vlan vlan.vbs"		
+		MENUITEM "CSR-show config ip bfd bfd-neighbor", "SEND", "show config ip bfd bfd-neighbor\r"
+		MENUITEM "CSR-show config device software", "SEND", "show config device software\r"
+		MENUITEM "Telnet", "RUN", "C:\scripts\securecrt\ericsson\telnet.vbs"
+		MENUITEM "Ping", "RUN", "C:\scripts\securecrt\ericsson\ping.vbs"
+		MENUITEM "&Quit", "SEND", "quit\r"
+END
+	
+	POPUPMENU "&Juniper"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Exit", "SEND", "exit\r"
+		MENUITEM "&Logout", "SEND", "logout\r"
+		MENUITEM "&Quit", "SEND", "quit\r"
+		POPUPMENU "&Tools"
+			MENUITEM "&Clear Status &Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_ClearStatusText.vbs"
+			MENUITEM "&Clone Tab", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_CloneTab.vbs"
+			MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+			MENUITEM "&Google Selected Text", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_GoogleSelectedText.vbs"
+			MENUITEM "Tab &Info", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_Info.vbs"
+			MENUITEM "Send To &All Tabs", "RUN", "C:\Scripts\SecureCRT\Default\DEFAULT_SendToAllTabs.vbs"
+		END
+		SEPARATOR
+		MENUITEM "clear interfaces statistics xe-#/#/#", "RUN", "C:\scripts\securecrt\Juniper\clear int statistics xe port.vbs"
+		MENUITEM "show int description.vbs", "RUN", "C:\scripts\securecrt\Juniper\show int description.vbs"
+		MENUITEM "show int diagnostic optics xe-#/#/#", "RUN", "C:\scripts\securecrt\Juniper\show int diagnostic optics xe port.vbs"
+		MENUITEM "show int xe-#/#/# port extensive", "RUN", "C:\scripts\securecrt\Juniper\show int xe port extensive.vbs"
+		MENUITEM "show log messages-syslog match port", "RUN", "C:\scripts\securecrt\Juniper\show log messages-syslog match port.vbs"
+		MENUITEM "show system uptime", "RUN", "C:\scripts\securecrt\Juniper\show system uptime.vbs"
+		
+	END
+	
+	POPUPMENU "Too&ls"
+		MENUITEM "&Keymap Editor...", "TOOLS_MENU_KEYMAP_EDITOR"
+		SEPARATOR
+		MENUITEM "&Create Public Key...", "TOOLS_CREATE_PUBLIC_KEY"
+		MENUITEM "Convert Private Key to &OpenSSH Format...", "TOOLS_CONVERT_PRIVATE_KEY"
+		MENUITEM "&Export Public Key from Certificate...", "TOOLS_EXPORT_PUBLICKEY_FROM_CERTIFICATE"
+		MENUITEM "&Public-Key Assistant...", "TOOLS_PUBLIC_KEY_ASSISTANT"
+		SEPARATOR
+		MENUITEM "Ma&nage Agent Keys...", "TOOLS_MANAGE_AGENT_KEYS"
+	END
+	
+	POPUPMENU "&Help"
+		MENUITEM "&Help Topics", "MENU_HELP_FINDER"
+		SEPARATOR
+		MENUITEM "SecureCRT &Web Page...", "MENU_HELP_WEBPAGE"
+		MENUITEM "&Order SecureCRT...", "MENU_HELP_ORDER"
+		MENUITEM "Check for &Updates...", "MENU_HELP_UPDATE"
+		MENUITEM "VanDyke Software &Forum...", "MENU_FORUMS_WEBPAGE"
+		SEPARATOR
+		MENUITEM "&Enter License Data...", "MENU_ENTER_LICENSE_DATA"
+		SEPARATOR
+		MENUITEM "&About SecureCRT...", "MENU_APP_ABOUT"
+	END
+END
+
+POPUPMENU "[context]"
+	MENUITEM "&Copy", "MENU_COPY"
+	MENUITEM "&Paste", "MENU_PASTE"
+	MENUITEM "Copy && Paste", "MENU_COPY_PASTE"
+	MENUITEM "Paste as &Quotation",  "MENU_EDIT_PASTE_AS_QUOTATION"
+	SEPARATOR
+	MENUITEM "&Open URL", "MENU_OPEN_URL"
+	SEPARATOR
+	MENUITEM "&Find...",  "MENU_FIND"
+	MENUITEM "Select &All", "MENU_SELECT_ALL"
+	MENUITEM "Print Se&lection", "MENU_PRINT_SELECTION"
+	SEPARATOR
+	MENUITEM "Clear Scroll&back", "MENU_CLEAR_SCROLLBACK"
+	MENUITEM "Clear &Screen", "MENU_CLEAR_SCREEN"
+	MENUITEM "Clear Screen && Scrollbac&k", "MENU_CLEAR_SCREEN_AND_SCROLLBACK"
+END
+
+POPUPMENU "[system]"
+	MENUITEM "&Restore", "SYS_MENU_RESTORE"
+	MENUITEM "&Move", "SYS_MENU_MOVE"
+	MENUITEM "&Size", "SYS_MENU_SIZE"
+	MENUITEM "Mi&nimize", "SYS_MENU_MINIMIZE"
+	MENUITEM "Ma&ximize", "SYS_MENU_MAXIMIZE"
+	SEPARATOR
+	MENUITEM "&Always on Top", "MENU_ALWAYS_ON_TOP"
+	MENUITEM "Save Settings No&w", "MENU_SAVE_NOW"
+	MENUITEM "&Toggle Menu Bar", "MENU_TOGGLE_MENU_BAR"
+	SEPARATOR
+	MENUITEM "&Close", "SYS_MENU_CLOSE"
+END
+
+// the toolbar
+TOOLBAR  "[toolbar]"
+	TOOLBARITEM "MENU_CONNECT", "MENU_CONNECT", , "Connect", "Connect"
+	TOOLBARITEM "MENU_QUICK_CONNECT", "MENU_QUICK_CONNECT", , "Quick", "Quick"
+	TOOLBARITEM "MENU_TAB_NEW", "MENU_TAB_NEW", , "Connect in Tab", "Connect in Tab"
+	TOOLBARITEM "MENU_RECONNECT", "MENU_RECONNECT"
+	TOOLBARITEM "MENU_DISCONNECT", "MENU_DISCONNECT"
+	TOOLBARITEM "CONNECT_BAR", "CONNECT_BAR"
+	SEPARATOR
+	TOOLBARITEM "MENU_COPY", "MENU_COPY"
+	TOOLBARITEM "MENU_PASTE", "MENU_PASTE"
+	TOOLBARITEM "MENU_FIND", "MENU_FIND"
+	SEPARATOR
+	TOOLBARITEM "MENU_PRINT_SCREEN", "MENU_PRINT_SCREEN"
+	TOOLBARITEM "MENU_PRINT_SELECTION", "MENU_PRINT_SELECTION"
+	TOOLBARITEM "MENU_PRINT_AUTO", "MENU_PRINT_AUTO"
+	SEPARATOR
+	TOOLBARITEM "MENU_SESSION_OPTIONS", "MENU_SESSION_OPTIONS"
+	TOOLBARITEM "TOOLS_MENU_KEYMAP_EDITOR", "TOOLS_MENU_KEYMAP_EDITOR"
+	TOOLBARITEM "TOOLS_PUBLIC_KEY_ASSISTANT", "TOOLS_PUBLIC_KEY_ASSISTANT"
+	SEPARATOR
+	TOOLBARITEM "MENU_HELP_FINDER", "MENU_HELP_FINDER"
+	SEPARATOR
+	TOOLBARITEM "TOOLBAR_LAUNCH_SECUREFX", "TOOLBAR_LAUNCH_SECUREFX"
+END

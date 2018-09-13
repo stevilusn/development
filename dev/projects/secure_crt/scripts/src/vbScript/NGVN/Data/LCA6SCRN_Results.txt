@@ -1,0 +1,5 @@
+Areas local to DN 8908908908
+       LCA6KEY TOOFC TENDLOC
+----------------------------
+./pos 235672 890 890
+This and LNATTIDX _XXXX1235672356799013457XXX

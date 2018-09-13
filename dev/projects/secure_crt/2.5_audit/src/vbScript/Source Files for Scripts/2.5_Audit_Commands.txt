@@ -1,0 +1,16 @@
+# This is a generic commands file. Comments are supported
+# if they exist on a line that begins with a '#' character.
+# The comment character can be changed in the script code
+# if on some platform a command you need to send actually
+# begins with a '#' character. Edit the scipt code file
+# (usually named RunCommandsOnMultipleHostsAndLogResults)
+# and modify the g_strComment variable to reflect your
+# desired comment sequence.
+
+# Run the UNIX 'hostname' command (Command #1) Keep this one in place
+show boot-messages | match ignore-case cf3:
+
+
+
+
+

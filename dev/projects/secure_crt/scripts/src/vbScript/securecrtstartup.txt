@@ -1,0 +1,3 @@
+start C:\Program Files\VanDyke Software\SecureCRT\SecureCRT.exe 
+/script C:\Program Files\VanDyke Software\SecureCRT\Scripts\ConnectToMultipleSessionsAndSendCommands.vbs 
+/arg %d /T /telnet %h %p

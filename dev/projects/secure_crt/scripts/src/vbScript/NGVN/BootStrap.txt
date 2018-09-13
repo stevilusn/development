@@ -1,0 +1,147 @@
+'********'*********'*********'*********'*********'*********'*********'*********'
+'BootStrap the system by importing Constants.txt and clsSecureCRTUtils.vbs
+'Initialize the script and then load the rest of the classes needed for NGVN 
+'scripts.
+'This script is not intended to be run by itself.  It is used to start up an
+'NGVN script and must be included/imported into the NGVN script.
+'********'*********'*********'*********'*********'*********'*********'*********'
+Option Explicit
+
+Function BootStrap
+	Dim objFSO, objFile, strFileData, strCurPath
+	
+	BootStrap = False
+	Set objFSO = CreateObject("Scripting.FileSystemObject")
+	strCurPath = objFSO.GetParentFolderName(crt.ScriptFullName) & "\"
+	If objFSO.FileExists(strCurPath & "Constants.txt") Then
+		Set objFile = objFSO.OpenTextFile(strCurPath & "Constants.txt")
+		strFileData = objFile.ReadAll
+		objFile.Close
+		Set objFile = Nothing 
+		ExecuteGlobal strFileData	
+		If objFSO.FileExists(DIR_GLOBAL & "clsImport.vbs") Then
+			Set objFile = objFSO.OpenTextFile(DIR_GLOBAL & "clsImport.vbs")
+			strFileData = objFile.ReadAll
+			objFile.Close
+			Set objFile = Nothing
+			ExecuteGlobal strFileData	
+			If (BootStrapSecureCRTUtils) Then
+				If (BootStrapClasses) Then 
+					BootStrap = True
+				End If
+			End If
+		Else
+			MsgBox "Could not find file " & DIR_SECURECRT & "clsSecureCRTUtils.vbs" & ".", vbOK + vbCritical, "FILE NOT FOUND!"
+		End If
+	Else
+		MsgBox "Could not find file " & strCurPath & "Constants.txt.", vbOK + vbCritical, "FILE NOT FOUND!"
+	End If 
+	Set objFSO = Nothing
+End Function 'BootStrap
+
+'********'*********'*********'*********'*********'*********'*********'*********'
+'BootStrapSecureCRTUtils
+'Initialize the clsSecureCRTUtils object and test that the script tab is 
+'connected.
+'********'*********'*********'*********'*********'*********'*********'*********'
+Public Function BootStrapSecureCRTUtils()
+	Dim objImport, blnReturn
+	
+	BootStrapSecureCRTUtils = True
+	Set s_objScriptTab = crt.GetScriptTab
+	
+	On Error Resume Next 
+	Set s_objUtils = Nothing
+	If (Err.Number = 0) Then
+		On Error Goto 0 
+		Set objImport = New clsImport
+		blnReturn = objImport.File(DIR_SECURECRT & "clsSecureCRTUtils.vbs")
+		Set objImport = Nothing
+		If (blnReturn) Then
+			Set s_objUtils = New clsSecureCRTUtils	
+			Set s_objUtils.Tab = s_objScriptTab
+			If (Not s_objUtils.Connected()) Then
+				BootStrapSecureCRTUtils = False
+			End If
+		Else
+			BootStrapSecureCRTUtils = False
+		End If
+	End If 
+	Err.Clear
+	On Error Goto 0 	  
+End Function 'BootStrapSecureCRTUtils
+
+'********'*********'*********'*********'*********'*********'*********'*********'
+'BootStrapClasses
+'Test for the existence of an object variable.  If it exists, import the required
+'class and instantiate the object variable.
+'********'*********'*********'*********'*********'*********'*********'*********'
+Public Function BootStrapClasses()
+	Dim objImport
+	Dim blnReturn
+	Set objImport = New clsImport
+	BootStrapClasses = True
+	
+	On Error Resume Next 
+	Set s_objDialogBox = Nothing
+	If (Err.Number = 0) Then
+		Err.Clear
+		On Error Goto 0 
+		blnReturn = objImport.File(DIR_GLOBAL & "clsDialogBox.vbs")
+		If (blnReturn) Then
+			Set s_objDialogBox = New clsDialogBox
+		Else 
+			BootStrapClasses = False
+		End If 
+	End If 
+	Err.Clear
+	On Error Goto 0 
+	
+	On Error Resume Next 
+	Set s_objStrings = Nothing
+	If (Err.Number = 0) Then
+		Err.Clear
+		On Error Goto 0 
+		blnReturn = objImport.File(DIR_GLOBAL & "clsStrings.vbs")
+		If (blnReturn) Then
+			Set s_objStrings = New clsStrings
+		Else 
+			BootStrapClasses = False
+		End If 
+	End If 
+	Err.Clear
+	On Error Goto 0 
+	
+	On Error Resume Next 
+	Set s_objArrays = Nothing
+	If (Err.Number = 0) Then
+		Err.Clear
+		On Error Goto 0 
+		blnReturn = objImport.File(DIR_GLOBAL & "clsArrays.vbs")
+		If (blnReturn) Then
+			Set s_objArrays = New clsArrays
+		Else 
+			BootStrapClasses = False
+		End If 
+	End If 
+	Err.Clear
+	On Error Goto 0 
+	
+	On Error Resume Next 
+	Set s_objWatchFor = Nothing
+	If (Err.Number = 0) Then
+		Err.Clear
+		On Error Goto 0 
+		blnReturn = objImport.File(DIR_SECURECRT & "clsWatchFor.vbs")
+		If (blnReturn) Then
+			Set s_objWatchFor = New clsWatchFor
+		Else 
+			BootStrapClasses = False
+		End If 
+	End If 
+	Err.Clear
+	On Error Goto 0 
+	
+	Set objImport = Nothing 
+End Function 'BootStrapClasses
+

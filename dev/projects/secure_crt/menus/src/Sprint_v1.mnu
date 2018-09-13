@@ -1,0 +1,756 @@
+//*** This file will be overwritten when SecureCRT is upgraded.           ***
+//*** If you wish to modify the file, please make your changes in a copy. ***
+
+// accelerator table
+ACCELERATOR
+	"Connect", "C", "VIRTKEY | ALT"
+	"Connect in Tab", "B", "VIRTKEY | ALT"
+	"New SFTP Tab", "P", "VIRTKEY | ALT"
+	"Quick", "Q", "VIRTKEY | ALT"
+	"Go to Chat Window", "G", "VIRTKEY | ALT"
+END
+
+// stringtable for status bar and tooltips
+STRINGTABLE
+	"Connect",  "Connect to a remote host in a new window\nConnect"
+	"Connect in Tab",  "Connect to a remote host in a new tab\nNew Tab"
+	"Clone Session", "Clone current session\nClone Session"
+	"New SFTP Tab",  "Connect new SFTP tab using current session\nSFTP"
+	"Lock Session", "Lock/Unlock current session\nLock/Unlock Session"
+	"Quick",  "Quick connect\nQuick Connect"
+	"Go to Chat Window",  "Go to the chat window or session window\nGo to Chat Window"
+	"ToolTips1", "displaying IPA port (Interface) and OAM VLAN Supporting a cells site/cascade and CSR Host Name"
+	"ToolTipscustom001", "Verify cascade is BOUND to correct BH (Backhaul) Mangagement EVC (Ethernet Virtual Circuit)"
+	"ToolTipscustom002", "Determine that the cascade Bearer VLAN is associated with correct EVC and interfaced to @CDN and BH MGMT VLAN is associated with correct EVC and is interfaced to @local and NNI port assignment."
+	"ToolTipscustom003", "This will provide Q-Scope cross connects.  Q-Scope port 6/2 should be bound to SVLAN (AAV/Telco) in order for Spirent Test to run"
+	"ToolTipscustom004", "How to verify the BH management VLAN is communicating with the IPA's and CSR"
+	"ToolTipscustom005", "Verify connectivity"
+	"ToolTipscustom006", "Verify connectivity to the CSR"
+	"ToolTipscustom007", "Display NNI Port Operational States and other Port related conditions"
+	"ToolTipscustom008", "Display port TX PWR and RX Pwr levels  (Light levels)"
+	"ToolTipscustom009", "Check CIR bandwidth"
+	"ToolTipscustom010", "Check for Ingress and Egress"
+	"ToolTipscustom011", "Review for details.  Type of errors on Transmit or Receive"
+	"ToolTipscustom012", "Log in to the CSR"
+	"ToolTipscustom013", "Show arp command for the CSR"
+	"ToolTipscustom014", "Check light/power levels"
+	"ToolTipscustom015", "Verify EOAM Mac Address (Spirent/Q-Scope)"
+	"ToolTipscustom016", "Verify Loopback is disabled"
+	"ToolTipscustom017", "Verify shaping rate (CIR)"
+	"ToolTipscustom018", "Check port for errors"
+	"ToolTipscustom019", "Show CSR SFP type (SX or LX)"
+	"ToolTipscustom020", "Identify OAM VLAN and Q-scope VLAN"
+	"ToolTipscustom021", "Determine if the IPA and CSR are communicating over the Ethernet Backhaul Network"
+	"ToolTipscustom022", "Verify connectivity"
+	"ToolTipscustom023", "Verify connectivity to the CSR"
+	"ToolTipscustom024", "Confirm Cross Connects to Spirent"
+	"ToolTipscustom025", "Check port light levels"
+	"ToolTipscustom026", "Check port  for errors on ingress and egress (see if incrementing)"
+	"ToolTipscustom027", "Check policy settings"
+	"ToolTipscustom028", "Show arp command for the CSR"
+	"ToolTipscustom029", "Check light/power levels"
+	"ToolTipscustom030", "Verify EOAM Mac Address (Spirent/Q-Scope)"
+	"ToolTipscustom031", "Verify Loopback is disabled"
+	"ToolTipscustom032", "Verify shaping rate  (CIR)"
+	"ToolTipscustom033", "Check port for ingress/egress and incrementing errors"
+	"ToolTipscustom034", " ###placeholder### "
+	//B:BRBNCAIZ-IPA-01# ping router 5 112.255.209.128 from admin display config. verfy type of csr.
+
+END
+
+// main menu
+MENU  "[main]"
+	POPUPMENU "&File"
+		MENUITEM "&Connect...", "MENU_CONNECT",   ,"Connect" , "Connect"
+		MENUITEM "&Quick Connect...", "MENU_QUICK_CONNECT",   ,"Quick", "Quick"
+		MENUITEM "Connect in Ta&b...", "MENU_TAB_NEW",   ,"Connect in Tab" , "Connect in Tab"
+		SEPARATOR
+		MENUITEM "&Reconnect", "MENU_RECONNECT"
+		MENUITEM "Reconnect &All", "MENU_RECONNECT_ALL"
+		MENUITEM "&Disconnect", "MENU_DISCONNECT"
+		MENUITEM "Disc&onnect All", "MENU_DISCONNECT_ALL"
+		SEPARATOR
+		MENUITEM "Clo&ne Session", "MENU_TAB_CLONE",   ,"Clone Session" ,
+		MENUITEM "Connect &SFTP Tab", "MENU_TAB_NEW_SFTP",   ,"New SFTP Tab" , "New SFTP Tab"
+		SEPARATOR
+		MENUITEM "Loc&k Session...", "MENU_TAB_LOCK",   ,"Lock Session" ,
+		SEPARATOR
+		POPUPMENU "&Print"
+			MENUITEM "&Auto Print", "MENU_PRINT_AUTO"
+			MENUITEM "&Screen", "MENU_PRINT_SCREEN"
+			MENUITEM "Se&lection", "MENU_PRINT_SELECTION"
+			MENUITEM "&Eject page", "MENU_PRINT_EJECT_PAGE"
+			MENUITEM "&Cancel", "MENU_PRINT_CANCEL"
+		END
+		MENUITEM "Print Set&up...", "MENU_PRINT_SETUP"
+		SEPARATOR
+		MENUITEM "&Log Session", "MENU_LOG_SESSION"
+		MENUITEM "Ra&w Log Session", "MENU_DEBUG_LOG"
+		MENUITEM "&Trace Options", "MENU_TRACE_OPTIONS"
+		SEPARATOR
+		MENUITEM "Recent Session", "MENU_MRU_FILE1"
+		SEPARATOR
+		MENUITEM "E&xit", "MENU_EXIT"
+	END
+	
+	POPUPMENU "&Edit"
+		MENUITEM "&Copy", "MENU_COPY"
+		MENUITEM "&Paste", "MENU_PASTE"
+		MENUITEM "C&opy && Paste", "MENU_COPY_PASTE"
+		MENUITEM "Paste as &Quotation", "MENU_EDIT_PASTE_AS_QUOTATION"
+		MENUITEM "Select &All", "MENU_SELECT_ALL"
+		MENUITEM "&Find...", "MENU_FIND"
+		SEPARATOR
+		MENUITEM "Print Se&lection", "MENU_PRINT_SELECTION"
+		SEPARATOR
+		MENUITEM "&Go to Chat Window", "MENU_GOTO_CHAT_SESSION_WINDOW"
+		SEPARATOR
+		MENUITEM "Clear Scroll&back", "MENU_CLEAR_SCROLLBACK"
+		MENUITEM "Clear &Screen", "MENU_CLEAR_SCREEN"
+		MENUITEM "Clear Screen && Scrollbac&k", "MENU_CLEAR_SCREEN_AND_SCROLLBACK"
+		SEPARATOR
+		MENUITEM "&Reset", "MENU_RESET"
+	END
+	
+	POPUPMENU "&View"
+		MENUITEM "&Menu Bar", "MENU_TOGGLE_MENU_BAR"
+		MENUITEM "&Toolbar", "MENU_TOGGLE_TOOLBAR"
+		MENUITEM "Session Ta&bs", "MENU_TOGGLE_SESSION_TABS"
+		MENUITEM "&Chat Window", "MENU_TOGGLE_CHAT_WINDOW"
+		MENUITEM "Connect Ba&r", "MENU_TOGGLE_CONNECT_BAR"
+		MENUITEM "&Status Bar", "MENU_TOGGLE_STATUS_BAR"
+		MENUITEM "&Button Bar", "MENU_TOGGLE_BUTTON_BAR"
+		POPUPMENU "Th&emes"
+			MENUITEM "&Shaded", "MENU_THEMES_SHADED"
+			MENUITEM "Office 200&0", "MENU_THEMES_OFFICE2000"
+			MENUITEM "Office 200&3", "MENU_THEMES_OFFICE2003"
+			MENUITEM "&Blue", "MENU_THEMES_BLUE"
+			MENUITEM "Blac&k", "MENU_THEMES_BLACK"
+			MENUITEM "&Aqua", "MENU_THEMES_AQUA"
+			MENUITEM "S&ilver", "MENU_THEMES_SILVER"
+		END
+		SEPARATOR
+		MENUITEM "&Window Transparency", "MENU_TOGGLE_ALPHA_TRANSPARENCY"
+		SEPARATOR
+		MENUITEM "&Horizontal Scroll Bar", "MENU_TOGGLE_HORZ_SCROLLBAR"
+		MENUITEM "&Vertical Scroll Bar", "MENU_TOGGLE_VERT_SCROLLBAR"
+		SEPARATOR
+		MENUITEM "&Always on Top", "MENU_ALWAYS_ON_TOP"
+		MENUITEM "&Full Screen", "MENU_TOGGLE_FULL_SCREEN"
+	END
+	
+	POPUPMENU "&Options"
+		MENUITEM "&Session Options...", "MENU_SESSION_OPTIONS"
+		MENUITEM "&Global Options...", "MENU_GLOBAL_OPTIONS"
+		SEPARATOR
+		MENUITEM "&Auto Save Options", "MENU_AUTO_SAVE"
+		MENUITEM "Save Settings &Now", "MENU_SAVE_NOW"
+	END
+	
+	POPUPMENU "&Transfer"
+		MENUITEM "&Send ASCII...", "MENU_SEND_ASCII"
+		MENUITEM "&Receive ASCII...", "MENU_RECEIVE_ASCII"
+		SEPARATOR
+		MENUITEM "Send &Binary...", "MENU_SEND_BINARY"
+		SEPARATOR
+		MENUITEM "Se&nd Xmodem...", "MENU_SEND_XMODEM"
+		MENUITEM "Re&ceive Xmodem...", "MENU_RECEIVE_XMODEM"
+		SEPARATOR
+		MENUITEM "Sen&d Ymodem...", "MENU_SEND_YMODEM"
+		MENUITEM "Recei&ve Ymodem...", "MENU_RECEIVE_YMODEM"
+		SEPARATOR
+		MENUITEM "&Zmodem Upload List...", "MENU_ZMODEM_ADD_FILE"
+		MENUITEM "Start Zmodem &Upload", "MENU_SEND_ZMODEM"
+	END
+	
+	POPUPMENU "&Script"
+		MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+		MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+		SEPARATOR
+		MENUITEM "&Start Recording Script", "MENU_SCRIPT_START_RECORDING"
+		MENUITEM "S&top Recording Script...", "MENU_SCRIPT_STOP_RECORDING"
+		MENUITEM "C&ancel Recording Script", "MENU_SCRIPT_CANCEL_RECORDING"
+		SEPARATOR
+		MENUITEM "Recent Script", "MENU_SCRIPT_MRU_FILE1"
+	
+	END
+
+	POPUPMENU "&Tools"
+		MENUITEM "&Keymap Editor...", "TOOLS_MENU_KEYMAP_EDITOR"
+		SEPARATOR
+		MENUITEM "&Create Public Key...", "TOOLS_CREATE_PUBLIC_KEY"
+		MENUITEM "Convert Private Key to &OpenSSH Format...", "TOOLS_CONVERT_PRIVATE_KEY"
+		MENUITEM "&Export Public Key from Certificate...", "TOOLS_EXPORT_PUBLICKEY_FROM_CERTIFICATE"
+		MENUITEM "&Public-Key Assistant...", "TOOLS_PUBLIC_KEY_ASSISTANT"
+		SEPARATOR
+		MENUITEM "&Manage Agent Keys...", "TOOLS_MANAGE_AGENT_KEYS"
+	END
+	
+	POPUPMENU "&Help"
+		MENUITEM "&Help Topics", "MENU_HELP_FINDER"
+		SEPARATOR
+		MENUITEM "SecureCRT &Web Page...", "MENU_HELP_WEBPAGE"
+		MENUITEM "&Order SecureCRT...", "MENU_HELP_ORDER"
+		MENUITEM "Check for &Updates...", "MENU_HELP_UPDATE"
+		MENUITEM "VanDyke Software &Forum...", "MENU_FORUMS_WEBPAGE"
+		SEPARATOR
+		MENUITEM "&Enter License Data...", "MENU_ENTER_LICENSE_DATA"
+		SEPARATOR
+		MENUITEM "&About SecureCRT...", "MENU_APP_ABOUT"
+	END
+
+	SEPARATOR
+	
+	POPUPMENU "&ERICSSON"
+		POPUPMENU "&Ericsson SE-1200"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. Show IP Int Brief | inc [CASCADE]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showIpIntBrief0715.vbs", "ToolTipscustom001" 
+			MENUITEM " 2. Show Bind [CASCADE]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showbind0715.vbs", "ToolTipscustom002" 
+			MENUITEM " 3. Show XC | inc [EOAM Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showXC0715.vbs", "ToolTipscustom003"
+			MENUITEM " 4. Show ARP | inc [BH Mgmt VLan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showArp0715.vbs", "ToolTipscustom004"
+			MENUITEM " 5. Show BFD Sessions | inc [CSR IP]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showbfdsession0716.vbs", "ToolTipscustom005"
+			MENUITEM " 6. Ping [IP Address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\ping.vbs", "ToolTipscustom006"
+			MENUITEM " 7. Show Port [PORT] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showport0715.vbs", "ToolTipscustom007"
+			MENUITEM " 8. Show Port [PORT] transciever", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showPortTrans0715.vbs", "ToolTipscustom008"
+			MENUITEM " 9. show qos cir | i [BH VLAN ID]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowQosCirInclude[BH VLAN ID].vbs", "ToolTipscustom009"
+			MENUITEM "10. Show Circuit Counters [PORT] | inc [s-vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showcircuitcounter.vbs", "ToolTipscustom010"
+			MENUITEM "11. Show Port Counters [PORT] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\showPortCountersDetail.vbs", "ToolTipscustom011" 
+			MENUITEM "12. Telnet", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\telnet.vbs", "ToolTipscustom012"
+			MENUITEM "13. ssh 113.255.241.11 administrator N#######", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ssh admin@[CSR OAM IP address].vbs", "ToolTipscustom012"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+
+		END
+		POPUPMENU "&Ericsson Edge Router"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. Show int descr | i [CASCADE]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showIntDescrByCascade.vbs", "ToolTipscustom020"
+			MENUITEM " 2. show run int [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showRunIntPort.vbs"
+			MENUITEM " 3. show arp vrf sat-exdmz Te[PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show arp vrf sat-exdmz Te-PORT.vbs"
+			MENUITEM " 4. show arp vrf cdn-infra Te[PORT]","RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show arp vrf cdn-infra Te-PORT.vbs"
+			MENUITEM " 5. show bfd session | i [IP Address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showBfdSessionIncludeIPAddress.vbs"
+			MENUITEM " 6. ping vrf sat-exdmz [IP Address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ping vrf sat-exdmz.vbs"
+			MENUITEM " 7. show int descr | i [CSRHostname]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowIntDescrIncCSRHostname.vbs"
+			MENUITEM " 8. show int Te[PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show int Te-PORT.vbs" 
+			MENUITEM " 9. show controller Te[PORT] phy", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowControllerTe[PORT]Phy.vbs" 
+			MENUITEM "10. show controller Te[PORT] stat", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowControllerTe[PORT]Stat.vbs"
+			MENUITEM "11. show controller np count np4 loc 0/0/CPU0 | inc DROP", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show controller np count np4 Loc0IncludeDROP.vbs"
+			MENUITEM "12. show qos interface Te[PORT] out", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showQosInterfaceTe[PORT]Out.vbs"
+			MENUITEM "12. Telnet", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\telnet.vbs", "ToolTipscustom012"
+			MENUITEM "13. ssh 113.255.241.11 administrator N#######", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ssh admin@[CSR OAM IP address].vbs", "ToolTipscustom012"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+		POPUPMENU "&Ericsson SE-1200 to CISCO CSR"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "CSR COMMANDS", "SEND", ""
+			MENUITEM " 1. CSR-Show Int Description", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntDescr.vbs"
+			MENUITEM " 2. CSR-sh arp vrf CDN ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowArp.vbs"
+			MENUITEM " 3. CSR-Show Arp", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowArp.vbs"
+			MENUITEM " 4. CSR-Show Int Vlan [Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntVlanOAMVlan.vbs"
+			MENUITEM " 5. CSR-Show Int GigPort", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntGigPort.vbs"
+			MENUITEM " 6. CSR-Show Ip Inter Brief", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIpInterBrief.vbs"
+			MENUITEM " 7. CSR-Show BFD Neighbors", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowBfdNeighborsf.vbs"
+			MENUITEM " 8. CSR-Show Mac-address-table", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowMac-address-table.vbs"
+			MENUITEM " 9. sh int tran", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\sh int tran.vbs"
+			MENUITEM "10. show ethernet cfm main local", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show ethernet cfm main local.vbs"
+			MENUITEM "11. show policy-map int [gi0/4] out", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showPolicy-mapInt[PORT]Out.vbs"
+			MENUITEM "12. show run int  [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowRunInt[PORT].vbs"
+			MENUITEM "13. show version ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowVersion.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END	
+		POPUPMENU "&Ericsson SE-1200 to Ericsson SP210/310"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "CSR COMMANDS", "SEND", ""
+			MENUITEM " 1. Show uni", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showUni.vbs", "ToolTipscustom028"
+			MENUITEM " 2. show config ip arp-entry", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showConfigIpArp-entry.vbs"
+			MENUITEM " 3. Show config slot1 lan 1 16 interface-module ddi", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowConfigSlot1Lan116Interface-moduleDdi.vbs", "ToolTipscustom029"
+			MENUITEM " 4. show config cfm domain md5 ma ma5 mep 33", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\checkMEP.vbs"
+			MENUITEM " 5. Show config switch traffic-diagnostic-tools mac-swap-loopback", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs", "ToolTipscustom031"
+			MENUITEM " 6. Show config slot1 lan 1 16", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs", "ToolTipscustom032"
+			MENUITEM " 7. Show config slot1 lan 1 16 ifstat", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs", "ToolTipscustom033"
+			MENUITEM " 8. CSR-show config device software", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showConfigDeviceSoftware.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END	
+		
+	END	
+
+	POPUPMENU "&ALU"
+		POPUPMENU "&ALU 7750"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. Show router interface | match [CASCADE]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU show router 2 interface match cascade.vbs"
+			MENUITEM " 2. Show service sdp [SVLAN] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ShowServiceSdp[SVLAN]Detail.vbs"
+			MENUITEM " 3. Show router interface [CSRHOSTNAME] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU CSR ShowRouterIntDetail.vbs"
+			MENUITEM " 4. Show router arp [CSRHOSTNAME]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU ShowRouterArpTo-CSRHostname-CSID-1.vbs"
+			MENUITEM " 5. Show router bfd session | match [CSRHOSTNAME] context all", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU ShowRouterBfdSessionMatchTo-CSRHostname-CSID-1.vbs"
+			MENUITEM " 6. Ping [CSR AAV (OAM) PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU ShowRouterBfdSessionMatchTo-CSRHostname-CSID-1.vbs"
+			MENUITEM " 7. Show service sdp-using [EOAM VLAN]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU Show service sdp-using [S-vlan].vbs"
+			MENUITEM " 8. Show port [PORT number]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU CSR  ShowPort0806.vbs"
+			MENUITEM " 9. Show router interface [CSRHOSTNAME] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU ShowRouterIntToCSRHostnameCSID-1 detail.vbs"
+			MENUITEM "10. Show qos queue-group egress | match [CSRHOSTNAME]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\Show qos queue-group egress Pipe match [CSRHOSTNAME].vbs"
+			MENUITEM "11. Show qos queue-group egress [Policy Settings] detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\Show qos queue-group egress [Policy Settings] detail.vbs" 
+			MENUITEM "12. SSH admin@[CSR OAM IP address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ssh admin@[CSR OAM IP address].vbs"
+			MENUITEM "13. admin display-config | match [LA33XC424] context all", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\AdminDisplay-configMatch[LA33XC424]ContextAll.vbs"
+			MENUITEM "14. ping router 5 [CSR IP] (for 7750 csr)", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ping router 5 [CSR IP] .vbs"
+			SEPARATOR
+			//MENUITEM "T1 ROUTER COMMANDS", "SEND", ""
+			MENUITEM "## 12. show router interface | match", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU show router 2 interface match cascade.vbs"
+			//MENUITEM "13. show multilink-bundle [bpgrp-ppp-118]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\show multilink-bundle [bpgrp-ppp-118].vbs"
+			//MENUITEM "14. show multilink-bundle [bpgrp-ppp-118]  detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\show multilink-bundle [bpgrp-ppp-118]  detail.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+		POPUPMENU "&ALU Edge Router"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATORMENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. show int descr | i [CASCADE]", "SEND", "show int descr | i ", "ToolTips1" 
+			MENUITEM " 2. show run int TeX/X/X/X.XXXX", "SEND", "show run int "
+			MENUITEM " 3. show arp vrf sat-exdmz TeX/X/X/X.XXXX", "SEND", "show arp vrf sat-exdmz "
+			MENUITEM " 4. show bfd session | i TeX/X/X/X.XXXX", "SEND", "show bfd session | i  "
+			MENUITEM " 4a. show bfd session | i TeX/X/X/X", "SEND", " "
+			MENUITEM " 5. ping vrf sat-exdmz  XXX.X.XXX.XX", "SEND", "ping vrf sat-exdmz  "
+			MENUITEM " 6. show int descr | i   [CSRHostname]", "SEND", "show int descr | i "
+			MENUITEM " 8. show int TeX/X/X/X.XXXX", "SEND", "show int  " 
+			MENUITEM " 9. show controller TeX/X/X/X phy", "SEND", "show controller [PORT] phy" 
+			MENUITEM "10. show controller TeX/X/X/X stat", "SEND", "show controller [PORT] stat  "
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+		POPUPMENU "&CSR ALU 7705"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "CSR COMMANDS", "SEND", ""
+			MENUITEM " 1. ALU CSR Show Router Int", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR ShowRouterInt.vbs"
+			MENUITEM " 2. ALU CSR Show Port [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR  ShowPort0806.vbs"
+			MENUITEM " 3. ALU CSR Show Port Detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR ShowPortDetail.vbs"
+			MENUITEM " 4. ALU CSR Show port 1/2/8 statistics", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR show port 128 statistics.vbs"
+			MENUITEM " 5. ALU CSR Show router bfd session", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR show router bfd session.vbs"
+			MENUITEM " 6. ALU CSR Show service sdp-using", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR show service sdp-using.vbs"
+			MENUITEM " 7. ALU CSR Show Router Int Detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR ShowRouterIntDetail.vbs"
+			MENUITEM " 8. ALU CSR Config port 1/2/7 info (Spirent/Q-Scope PORT)", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU CSR config port 127 info.vbs"
+			MENUITEM " 9. Show Service sdp-using [S-Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU Show service sdp-using [S-vlan].vbs"
+			MENUITEM "10. Show System Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU ShowSystemInfo.vbs"
+			MENUITEM "11. *Clear port stats", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU Clear port stats.vbs"
+			MENUITEM "12. *Show time", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU Show time.vbs"
+			MENUITEM "13. *Show log logid 99 | match | [PORT] context  all", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU Show  log loig 99 match port context  all .vbs"
+			MENUITEM "14. *Admin disp conf | match NGW context all", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\admin display conf match NGW context all.vbs"
+			MENUITEM "15. Monitor Port", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\alu\ALU MonitorPort.vbs"
+			MENUITEM "16. Ping", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\ping.vbs"
+			MENUITEM "17. SSH to CSR", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\SSH to CSR.vbs"
+			MENUITEM "18. Show port 1/2/8 (AAV CSR PORT)", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ALU\ALU CSR show port 128 statistics.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+		POPUPMENU "&CSR ALU Cisco"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "CSR COMMANDS", "SEND", ""
+			
+			MENUITEM "Ping", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\ping.vbs"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+
+		END
+
+	END
+
+	POPUPMENU "&SAMSUNG"
+	
+		POPUPMENU "&Samsung"
+				MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+				MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+				SEPARATOR
+			    MENUITEM "CSR COMMANDS", "SEND", ""
+				MENUITEM " 1. Show ARP", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowArp.vbs"
+				MENUITEM " 2. Show ARP | Inc [EOAM Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowArpIncEOAMVlan.vbs"
+				MENUITEM " 3. Show ARP TenGige [PORT.OAM or BH Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowArpTenGigePortBHOAMPVlan.vbs"
+				MENUITEM " 4. Show Controller TenGige", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowControllerTengige.vbs"
+				MENUITEM " 5. Show Controller TenGige [PORT] Internal ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowControllerTenGigePortInternal.vbs"
+				MENUITEM " 6. Show Controller TenGige [PORT] Physical ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowControllerTenGigePortPhysical.vbs"
+				MENUITEM " 7. Show Controller Tengige [PORT] Stat", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowControllerTengigePortStat.vbs"
+				MENUITEM " 8. Show Int Description | Include [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowIntDescriptionIncludePort.vbs"
+				MENUITEM " 9. Show Int Detail | Include [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowIntDetailIncludePort.vbs"
+				MENUITEM "10. *Show Int TenGige.[PORT.OAM or BH Mgmt VLan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowIntTenGigePortBHOAMVlan.vbs"
+				MENUITEM "11. Show Int TenGige.[PORT.OAM or BH Mgmt VLan] acc", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowIntTenGigePortBHOAMVlanAcc.vbs"
+				MENUITEM "12. Show BFD Session | Include [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowBFdSessionIncludeTEPort.vbs"
+				MENUITEM "13. Show Int TenGigE", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowIntTengige.vbs"
+				MENUITEM "14. Show Log I Include [Port]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowLogIncPort.vbs"
+				MENUITEM "15. Show Run | Include [CSRHostname-CSID-1]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowRunIncludeCSRHostnameCSID-1 detail.vbs"
+				MENUITEM "16. *Show log incl port", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\show log incl port.vbs"
+				MENUITEM "17. *Show int des incl NGW", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM Show int des incl NGW.vbs"
+				MENUITEM "18. *Show clock.vbs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\show clock.vbs"
+				MENUITEM "19. Ping", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\ping.vbs"
+				MENUITEM "20. SSH to CSR (Master Session-Jumpbox)", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SSH to CSR Master Session to Jumpbox.vbs"
+				SEPARATOR
+				MENUITEM "CSR COMMANDS", "SEND", ""
+				MENUITEM " 1. CSR-Show Arp", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowArp.vbs"
+				MENUITEM " 2. CSR-Show Arp Vlan [OAMVlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowArpVlanOAMVlan.vbs"
+				MENUITEM " 3. CSR-Show Arp Vlan [OAMVlan] Detail", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowArpVlanOAMVlanDetail.vbs"
+				MENUITEM " 4. CSR-Show Int Description", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntDescr.vbs"
+				MENUITEM " 5. CSR-Show Int Vlan [Vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntVlanOAMVlan.vbs"
+				MENUITEM " 6. CSR-Show Int GigPort", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIntGigPort.vbs"
+				MENUITEM " 7. CSR-Show Ip Inter Brief", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowIpInterBrief.vbs"
+				MENUITEM " 8. CSR-Show BFD Neighbors", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowBfdNeighborsf.vbs"
+				MENUITEM " 9. CSR-Show Mac-address-table", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR ShowMac-address-table.vbs"
+				MENUITEM "10. CSR-Show mac-address-table vlan [vlan]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM CSR show mac-address-table vlan vlan.vbs"		
+				MENUITEM "11. CSR-show config ip bfd bfd-neighbor", "SEND", "show config ip bfd bfd-neighbor\r"
+				MENUITEM "12. CSR-show config device software", "SEND", "show config device software\r"
+				MENUITEM "13. Telnet", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\telnet.vbs"
+				MENUITEM "14. Ping", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\ericsson\ping.vbs"
+				SEPARATOR
+				//MENUITEM "&Exit", "SEND", "exit\r"
+				MENUITEM "&Logout", "SEND", "logout\r"
+				MENUITEM "&Quit", "SEND", "quit\r"
+				POPUPMENU "&Tools"
+					MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+					MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+					MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+					MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+					MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+					MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+				END
+		END
+
+		POPUPMENU "&Edge Router Samsung Market"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. Show int descr | i [CASCADE]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showIntDescrByCascade.vbs", "ToolTipscustom020"
+			MENUITEM " 2. show run int [PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showRunIntPort.vbs"
+			MENUITEM " 3. show arp vrf sat-exdmz Te[PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show arp vrf sat-exdmz Te-PORT.vbs"
+			MENUITEM " 3. show arp vrf cdn-infra Te[PORT]","RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show arp vrf cdn-infra Te-PORT.vbs"
+			MENUITEM " 4. show bfd session | i [IP Address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showBfdSessionIncludeIPAddress.vbs"
+			MENUITEM " 5. ping vrf sat-exdmz [IP Address]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ping vrf sat-exdmz.vbs"
+			MENUITEM " 6. show int descr | i [CSRHostname]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowIntDescrIncCSRHostname.vbs"
+			MENUITEM " 8. show int Te[PORT]", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show int Te-PORT.vbs" 
+			MENUITEM " 9. show controller Te[PORT] phy", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowControllerTe[PORT]Phy.vbs" 
+			MENUITEM "10. show controller Te[PORT] stat", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\ShowControllerTe[PORT]Stat.vbs"
+			MENUITEM "11. show controller np count np4 loc 0/0/CPU0 | inc DROP", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\show controller np count np4 Loc0IncludeDROP.vbs"
+			MENUITEM "12. show qos interface Te[PORT] out", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Ericsson\showQosInterfaceTe[PORT]Out.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+		POPUPMENU "&Samsung T1"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. show run | i [CASCADE] ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\SAM ShowRunIncludeCSRHostnameCSID-1 detail.vbs"
+			MENUITEM " 2. show multilink interface detail multilink [Multilink ID] ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\show multilink interface detail multilink [Multilink ID].vbs"
+			MENUITEM " 3. show controller t1 [t1 interface] ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\show controller t1 [t1 interface].vbs"
+			MENUITEM " 4. show int Serial [Serial interace] ", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Samsung\show int Serial [Serial interace].vbs"
+			//SEPARATOR
+			//MENUITEM "CSR COMMANDS", "SEND", " "
+			//MENUITEM " 1. show int description", "SEND", "show int description "
+			//MENUITEM " 2. show int serial [PORT]", "SEND", "show int serial "
+			//MENUITEM " 3. show controller [T1]", "SEND", "show controller "
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+	END
+
+	POPUPMENU "&JUNIPER"
+
+		POPUPMENU "&Edge to Juniper"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. clear interfaces statistics xe-#/#/#", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs"
+			MENUITEM " 2. show int description", "SEND", "show int description "
+			MENUITEM " 3. show int diagnostic optics [xe-#/#/#]", "SEND", "show int diagnostic optics "
+			MENUITEM " 4. show int [xe-#/#/#] port extensive", "SEND", "show int xe-#/#/# port extensive "
+			MENUITEM " 5. show log messages-syslog match port", "SEND", "show log messages-syslog match port "
+			MENUITEM " 6. show system uptime", "SEND", "show system uptime "
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+		POPUPMENU "&Juniper"
+			MENUITEM "&Run...", "MENU_SCRIPT_RUN"
+			MENUITEM "&Cancel", "MENU_SCRIPT_CANCEL"
+			SEPARATOR
+			MENUITEM "IPA ROUTER COMMANDS", "SEND", ""
+			MENUITEM " 1. clear interfaces statistics xe-#/#/#", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs"
+			MENUITEM " 2. show int description.vbs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\show int description.vbs"
+			MENUITEM " 3. show int diagnostic optics xe-#/#/#", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\show int diagnostic optics xe port.vbs"
+			MENUITEM " 4. show int xe-#/#/# port extensive", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\show int xe port extensive.vbs"
+			MENUITEM " 5. show log messages-syslog match port", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\show log messages-syslog match port.vbs"
+			MENUITEM " 6. show system uptime", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\show system uptime.vbs"
+			SEPARATOR
+			MENUITEM "&Logout", "SEND", "logout\r"
+			MENUITEM "&Quit", "SEND", "quit\r"
+			POPUPMENU "&Tools"
+				MENUITEM "&Clear Status &Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_ClearStatusText.vbs"
+				MENUITEM "&Clone Tab", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_CloneTab.vbs"
+				MENUITEM "&Save Selected Text To CSV File", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SaveSelectedTextToCSVFile.vbs"
+				MENUITEM "&Google Selected Text", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_GoogleSelectedText.vbs"
+				MENUITEM "Tab &Info", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_Info.vbs"
+				MENUITEM "Send To &All Tabs", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Default\DEFAULT_SendToAllTabs.vbs"
+			END
+		END
+
+	END
+
+	POPUPMENU "&MW RADIOS"
+		POPUPMENU "&Dragon Wave MW"
+			MENUITEM "ssh -l energetic [CSR IP ADDRESS]", "SEND", "ssh -l energetic "
+			MENUITEM "get alarms", "SEND", "get alarms"
+			MENUITEM "get system summary ", "SEND", "get system summary "
+			MENUITEM "get modem statistics ", "SEND", "get modem statistics "
+			MENUITEM "get radio statistics ", "SEND", "get radio statistics "
+			MENUITEM "get performance log ", "SEND", "get performance log "
+		END
+
+		POPUPMENU "&Fast Back MW"
+			MENUITEM "ssh -l admin", "SEND", "ssh -l admin "
+			MENUITEM "enable", "SEND", "enable "
+			MENUITEM "show version", "SEND", "show version "
+			MENUITEM "show interfaces radio 0 history rssi", "SEND", "show interfaces radio 0 history rssi "
+		END
+
+		POPUPMENU "&Ericsson MW"
+			MENUITEM "Telnet[MW RADIO IP ADDRESS] ", "SEND", "telnet "
+			MENUITEM "show alarms ", "SEND", "show alarms "
+			MENUITEM "show rl status ", "SEND", "show rl status "
+			
+		END
+
+	END
+
+	POPUPMENU "&MINI-MACRO"
+		POPUPMENU "&ALU"
+			MENUITEM "CSR COMMANDS", "SEND", " "
+			MENUITEM " 1. ssh admin@[CSR OAM IP address] ", "SEND", "ssh admin@"
+			MENUITEM " 2. show port 1 description", "SEND", "show port 1 description "
+			MENUITEM " 3. show port 1 detail", "SEND", "show port 1 detail "
+			MENUITEM " 4. show port 1/2/8 [AAV CSR PORT]", "SEND", "show port 1/2/8 "
+			MENUITEM " 5. show port 1/2/7 [Spirent/Q-Scope PORT]", "SEND", "show port 1/2/7 "
+		END
+		POPUPMENU "&ERICSSON"
+			MENUITEM "CSR COMMANDS", "SEND", " "
+			MENUITEM " 1. Log in to the CSR", "SEND", "telnet"
+			MENUITEM " 2. show config slot 1 lan [PORT]", "SEND", "show config slot 1 lan 1 "
+			MENUITEM " 3. show uni", "SEND", "show uni "
+			MENUITEM " 4. show config ip arp-entry", "SEND", "show config ip arp-entry "
+			MENUITEM " 5. show config slot1 lan 1 9 ifstat", "SEND", "show config slot1 lan 1 9 ifstat "
+			MENUITEM " 6. show config slot1 lan 1 16 ifstat", "SEND", "show config slot1 lan 1 16 ifstat "
+			MENUITEM " 7. show config slot1 lan 1 16", "SEND", "show config slot1 lan 1 16 "
+			MENUITEM " 8. show config slot1 lan 1 9", "SEND", "show config slot1 lan 1 9 "
+			MENUITEM " 9. show config slot1 lan 1 16 interface-module ddi", "SEND", "show config slot1 lan 1 16 interface-module ddi "
+			MENUITEM "10. show config slot1 lan 1 9 interface-module ddi", "SEND", "show config slot1 lan 1 9 interface-module ddi "
+		END
+		POPUPMENU "&EWAN"
+			MENUITEM "CSR COMMANDS", "SEND", " "
+			MENUITEM " 1. telnet vrf sat-exdmz [CSR OAM IP address] source [xe-#/#/#.####] ", "SEND", "telnet vrf sat-exdmz [CSR OAM IP address] source [xe-#/#/#.####] "
+			MENUITEM " 2. ssh vrf sat-exdmz [CSR OAM IP address] source-internal [xe-#/#/#] user [OIM USER NAME]", "SEND", "show port 1 description "
+			MENUITEM " 3. ssh router 5 [OIM USER NAME]@[CSR OAM IP address]", "SEND", "ssh router 5 "
+			MENUITEM " 4. show arp vrf CDN", "SEND", "show arp vrf CDN "
+			MENUITEM " 5. show arp vrf cdn-infra", "SEND", "show arp vrf cdn-infra "
+			MENUITEM " 6. show interface description", "SEND", "show interface description "
+			MENUITEM " 7. show mac-address-table", "SEND", "show mac-address-table "
+			MENUITEM " 8. show int gi0/4", "SEND", "show int gi0/4 "
+			MENUITEM " 9. show int gi0/4 | inc packets", "SEND", "show int gi0/4 | inc packets"
+			MENUITEM "10. show int gi0/4 | inc errors", "SEND", "show int gi0/4 | inc errors"
+			MENUITEM "11. show policy-map interface gi0/4", "SEND", "show policy-map interface gi0/4"
+			MENUITEM "12. show interfaces trans", "SEND", "show interfaces trans "
+			MENUITEM "13. show log", "SEND", "show log "
+		END
+	END
+
+	POPUPMENU "&10K/SIU"
+		MENUITEM "clear interfaces statistics xe-#/#/#", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs"
+		MENUITEM "show int desc | inc [cascade]", "SEND", "show int desc | inc"
+		MENUITEM "show int [SeX/X/X.X/X:X]", "SEND", "show int "
+		MENUITEM "enable", "SEND", "enable"
+		MENUITEM "show run int [SeX/X/X.X/XX:X]", "SEND", "show run int "
+		MENUITEM "show cont [vtX/X/X.X/XX]", "SEND", "show cont "
+	END
+
+	POPUPMENU "&EAOM CONFIGURATION"
+	//	SEPARATOR
+	//	MENUITEM "clear interfaces statistics xe-#/#/#", "RUN", "C:\Users\st260209\OneDrive - Sprint\development\dev\projects\secure_crt\scripts\src\vbScript\Juniper\clear int statistics xe port.vbs"
+	//	SEPARATOR
+	//	MENUITEM " test ", "SEND", " "
+	END
+END
+
+POPUPMENU "[context]"
+	MENUITEM "&Copy", "MENU_COPY"
+	MENUITEM "&Paste", "MENU_PASTE"
+	MENUITEM "Copy && Paste", "MENU_COPY_PASTE"
+	MENUITEM "Paste as &Quotation",  "MENU_EDIT_PASTE_AS_QUOTATION"
+	SEPARATOR
+	MENUITEM "&Open URL", "MENU_OPEN_URL"
+	SEPARATOR
+	MENUITEM "&Find...",  "MENU_FIND"
+	MENUITEM "Select &All", "MENU_SELECT_ALL"
+	MENUITEM "Print Se&lection", "MENU_PRINT_SELECTION"
+	SEPARATOR
+	MENUITEM "Clear Scroll&back", "MENU_CLEAR_SCROLLBACK"
+	MENUITEM "Clear &Screen", "MENU_CLEAR_SCREEN"
+	MENUITEM "Clear Screen && Scrollbac&k", "MENU_CLEAR_SCREEN_AND_SCROLLBACK"
+END
+
+POPUPMENU "[system]"
+	MENUITEM "&Restore", "SYS_MENU_RESTORE"
+	MENUITEM "&Move", "SYS_MENU_MOVE"
+	MENUITEM "&Size", "SYS_MENU_SIZE"
+	MENUITEM "Mi&nimize", "SYS_MENU_MINIMIZE"
+	MENUITEM "Ma&ximize", "SYS_MENU_MAXIMIZE"
+	SEPARATOR
+	MENUITEM "&Always on Top", "MENU_ALWAYS_ON_TOP"
+	MENUITEM "Save Settings No&w", "MENU_SAVE_NOW"
+	MENUITEM "&Toggle Menu Bar", "MENU_TOGGLE_MENU_BAR"
+	SEPARATOR
+	MENUITEM "&Close", "SYS_MENU_CLOSE"
+END
+
+// the toolbar
+TOOLBAR  "[toolbar]"
+	TOOLBARITEM "MENU_CONNECT", "MENU_CONNECT", , "Connect", "Connect"
+	TOOLBARITEM "MENU_QUICK_CONNECT", "MENU_QUICK_CONNECT", , "Quick", "Quick"
+	TOOLBARITEM "MENU_TAB_NEW", "MENU_TAB_NEW", , "Connect in Tab", "Connect in Tab"
+	TOOLBARITEM "MENU_RECONNECT", "MENU_RECONNECT"
+	TOOLBARITEM "MENU_DISCONNECT", "MENU_DISCONNECT"
+	TOOLBARITEM "CONNECT_BAR", "CONNECT_BAR"
+	SEPARATOR
+	TOOLBARITEM "MENU_COPY", "MENU_COPY"
+	TOOLBARITEM "MENU_PASTE", "MENU_PASTE"
+	TOOLBARITEM "MENU_FIND", "MENU_FIND"
+	SEPARATOR
+	TOOLBARITEM "MENU_PRINT_SCREEN", "MENU_PRINT_SCREEN"
+	TOOLBARITEM "MENU_PRINT_SELECTION", "MENU_PRINT_SELECTION"
+	TOOLBARITEM "MENU_PRINT_AUTO", "MENU_PRINT_AUTO"
+	SEPARATOR
+	TOOLBARITEM "MENU_SESSION_OPTIONS", "MENU_SESSION_OPTIONS"
+	TOOLBARITEM "TOOLS_MENU_KEYMAP_EDITOR", "TOOLS_MENU_KEYMAP_EDITOR"
+	TOOLBARITEM "TOOLS_PUBLIC_KEY_ASSISTANT", "TOOLS_PUBLIC_KEY_ASSISTANT"
+	SEPARATOR
+	TOOLBARITEM "MENU_HELP_FINDER", "MENU_HELP_FINDER"
+	SEPARATOR
+	TOOLBARITEM "TOOLBAR_LAUNCH_SECUREFX", "TOOLBAR_LAUNCH_SECUREFX"
+END

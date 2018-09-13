@@ -1,0 +1,60 @@
+'#$language = "VBScript"
+'#$interface = "1.0"
+'Name: <SCRIPT NAME>.vbs
+
+Option Explicit
+
+Dim s_intTimeout
+Dim s_objScriptTab	'Gets set during Initialize.
+Dim s_objUtils
+'Dim s_objDialogBox
+'Dim s_objStrings
+'Dim s_objArrays
+'Dim s_objWatchFor
+
+'********'*********'*********'*********'*********'*********'*********'*********'
+'Main
+'********'*********'*********'*********'*********'*********'*********'*********'
+Sub Main
+ 	
+	If (Not Initialize) Then
+		Exit Sub
+	End If
+	s_objUtils.ScriptStart
+	
+	'... Add code here ...
+	
+	s_objUtils.ScriptEnd
+	Set s_objUtils = Nothing
+'	Set s_objDialogBox = Nothing
+'	Set s_objStrings = Nothing
+'	Set s_objArrays = Nothing
+'	Set s_objWatchFor = Nothing
+End Sub 'Main
+
+
+'********'*********'*********'*********'*********'*********'*********'*********'
+'Initialize the system by importing Constants.txt and classes, setting up 
+'objects, and testing the connection.
+'********'*********'*********'*********'*********'*********'*********'*********'
+Function Initialize()
+	Dim objFSO, objFile, strFileData, strCurPath
+	
+	Initialize = False 
+	Set objFSO = CreateObject("Scripting.FileSystemObject")
+	strCurPath = objFSO.GetParentFolderName(crt.ScriptFullName) & "\"
+	If objFSO.FileExists(strCurPath & "BootStrap.txt") Then
+		Set objFile = objFSO.OpenTextFile(strCurPath & "BootStrap.txt")
+		strFileData = objFile.ReadAll
+		objFile.Close
+		Set objFile = Nothing
+		ExecuteGlobal strFileData	
+		If (BootStrap) Then
+			Initialize = True 
+		End If
+	Else
+		MsgBox "Could not find file " & strCurPath & "BootStrap.txt.", vbOK & vbCritical, "FILE NOT FOUND!"
+	End If 
+	s_intTimeout = DEFAULT_TIMEOUT
+	Set objFSO = Nothing
+End Function 'Initialize
